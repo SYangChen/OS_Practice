@@ -1,0 +1,59 @@
+1.
+Page Replacement Algorithms
+(a) ANS : Page#0
+	
+	NRU( Not Recently Used ) will replace Page#0, 
+    because Reference = 0 and Modified = 0
+
+(b) ANS : Page#2
+	
+	FIFO( First In First Out ) will replace Page#2,
+    because #2 is the first one loaded at time 120
+
+(c) ANS : Page#1
+	
+	LRU( Least Recently Used ) will replace Page#1,
+    because the last reference of #1 is least recently used at time 260
+
+(d) ANS : Page#0
+	
+	Second Chance Replacement will replace Page#0,
+    because ( in FIFO order ) its reference bit is 0, others is 1
+	
+2.	ANS : page#D
+	Page	Loaded	R	M
+	----------------------
+	A		18		1	1
+	C		23		0	1
+	G		5		1	1
+	H		7		1	0
+	B		32		0	0
+	L		19		1	0
+	N		3		1	1
+	D		8		0	1
+	
+	In Second Chance Replacement algorithm,
+	the next page will replace the page#D,
+	because the Reference bit of page#D is 0 and is the First loaded frame.
+
+3. 
+Physical addresses refer to hardware addresses of physical memory.
+Virtual addresses refer to the virtual store viewed by the process.
+
+virtual address可能對應到不同的physical address，端看OS如何做page table與mapping，讓使用者以為有很大量的記憶體可以用。
+
+virtual address通常比physical address還來得大。
+
+virtual address & physical address在表面上獨立的。
+
+通常32-bit machine 的 virtual address 有4G大小可以用，且每個process都有自己獨立的4G大小，但在physical address 的部分就真的只有真正記憶體大小的用量(maybe 4G)。
+
+4.
+兩者在選擇上的結果皆一樣，都是以FIFO的方式看R bit。
+差別僅在於實作方法不同，一個是使用head、tail linked list，另一個是circular linked list。
+	
+5.
+Page#0: 01101110
+Page#1: 01001001
+Page#2: 00110111
+Page#3: 10001011

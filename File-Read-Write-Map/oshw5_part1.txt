@@ -1,0 +1,49 @@
+1.
+	hard link : 在某directory下建立新的file的連結指向某個inode，
+				而其可以擁有很多hard link指向相同的file。
+				An advantage : 使用相對較少的disk space，因為他只增加一個新連結。
+	soft link : 相當於對於這個file的別名，產生新的inode，連結整條path。
+				An advantage : 可以跨file system使用。
+	
+	difference :
+		1. directory無法建立hard link，只能建立soft link。
+		2. delete hard link不會刪除到file本身，除非僅剩最後一個link，
+		3. 若這個資料被直接刪除或移動，那soft link很可能會失效。
+		4. soft link可以跨file system運用，而hard link不行。
+	
+2.
+	5 msec+(10 msec+0.02 msec) = 15.02 msec	( access time per block )
+ 	15.02 msec*100 = 1.502 sec				( 100 blocks access time )
+	...
+   	(0.1 msec*2)+(10 msec+0.02 msec) = 10.22 msec	( access time per block )
+	10.22 msec*100 = 1.022 sec#						( 100 blocks access time )
+
+3. 
+	#Frames |  LRU |  Opt
+	--------+------+------
+	    1   |  20  |  20 
+	    2   |  18  |  15
+	    3   |  15  |  11
+	    4   |  10  |   8	
+	    5   |   8  |   7
+	    6   |   7  |   7
+	    7   |   7  |   7
+
+4.
+         |   Contiguous  |  Linked  |  Indexed 
+	-----+---------------+----------+-----------
+   	 a.  |      201      |     1    |     1 
+   	 b.  |      101      |    52    |     1 
+   	 c.  |        1      |     3    |     1 
+   	 d.  |      198      |     1    |     0 
+     e.  |       98      |    52    |     0 
+	
+5.
+	The virtual address in binary form is
+	0001 0001 0001 0010 0011 0100 0101 0110
+	Since the page size is 2^12, the page table size is 2^20. Therefore the low
+	order 12 bits 0100 0101 0110 are used as the displacement into the page,
+	while the remaining 20 bits 0001 0001 0001 0010 0011 are used as the
+	displacement in the page table. The offset bits are then 
+	concatenated to the resulting physical page number (from the page table),
+	to form the final address. 
